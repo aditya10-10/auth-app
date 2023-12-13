@@ -18,6 +18,5 @@ const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
-server.timeout = 60000; // Set the timeout to 60 seconds (adjust as needed)
 
 connectDB();
