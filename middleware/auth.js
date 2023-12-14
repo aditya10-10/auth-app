@@ -3,10 +3,17 @@ require("dotenv").config();
 
 exports.auth = (req, res, next) => {
   try {
-    const payload = req.body.token;
+
+    // console.log("Body", req.body.token);
+    // console.log("Cookies", req.cookies.token);
+    // console.log("Header", req.header("Authorization").replace("Bearer", " "));
+   
+   
+    const payload = req.cookies.token || req.body.token || req.header("Authorization").replace("Bearer ", "");
+
     console.log("paylaod is here " + payload);
 
-    if (!payload) {
+    if (!payload || payload === undefined) {
       return res.status(401).json({
         success: false,
         message: "Token is Missing  ",
